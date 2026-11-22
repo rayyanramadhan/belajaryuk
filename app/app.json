@@ -2,10 +2,15 @@
   "expo": {
     "name": "app",
     "slug": "app",
+    "scheme": "belajaryuk",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
+    "plugins": ["expo-router"],
+    "experiments": {
+      "typedRoutes": true
+    },
     "ios": {
       "supportsTablet": true
     },
