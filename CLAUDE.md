@@ -9,11 +9,15 @@ Full design rationale: `docs/superpowers/specs/2026-11-22-belajaryuk-mvp-design.
 ## Stack
 
 - **App:** Expo (React Native + TypeScript) in `app/` — targets web, iOS, and Android from one codebase. `react-native-web` + `react-dom` are installed for web support. Run with `cd app && npx expo start`.
-- **Backend:** Supabase (Postgres, Auth, Storage) — **live**: project `belajaryuk` (ref `tsjycrcanmxjkowyovvm`, `ap-southeast-1`), schema applied, `tracks` seeded. URL/key in `app/.env.example`, client in `app/lib/supabase.ts`. RLS is on for all tables but no policies are defined yet.
+- **Backend:** Supabase (Postgres, Auth, Storage) — **live**: project `belajaryuk` (ref `tsjycrcanmxjkowyovvm`, `ap-southeast-1`). Migrations `0001`-`0004` applied: core schema, `profiles.track_interest`, RLS policies (profiles/lesson_progress owner-scoped, tracks/courses/lessons public-read), and real seed content (English Basics: 4 drill lessons; Newborn Essentials: 3 video_quiz lessons — shape documented in `docs/content/lesson-content-shapes.md`). URL/key in `app/.env.example`, client in `app/lib/supabase.ts`.
 - **Deployment:** a Vercel project named `belajaryuk` exists and is linked to this GitHub repo, for hosting the Expo web export once there's something to deploy.
 - **Design:** Claude's native Design System + Design artifacts (not Figma — dropped after hitting Figma MCP's Starter-plan rate limit mid-build; free and unlimited within this ecosystem). `ui-ux-designer` ("Citra") builds a Design System artifact (tokens/components) and Design artifacts (screens) here; `mobile-web-builder` ("Wira") implements from those.
   - Design System artifact: "belajaryuk Design System" — slug `6b5c9ba9-3d50-48e2-9bff-176c31ee3c6c` (https://claude.ai/artifact/EFwBjLGUBjwKKtmhV1Y1zj). Colors, type (Plus Jakarta Sans), spacing, radius, Button/Input/Card components.
-  - Design canvas: "belajaryuk — Marketing Site + Auth" — slug `5e6aa96f-f9ac-4794-80f2-52aeafc2e40c` (https://claude.ai/artifact/CfDmzg5ZLKEHP4gjTkiUT5). Artboards: Landing Page, Sign Up, Login (web), linked into a clickable flow.
+  - Design canvas: "belajaryuk — Marketing Site + Auth" — slug `5e6aa96f-f9ac-4794-80f2-52aeafc2e40c` (https://claude.ai/artifact/CfDmzg5ZLKEHP4gjTkiUT5). Artboards: Landing Page, Sign Up, Login (web), Home/Dashboard, English drill player (MCQ/fill-blank/match-pairs + completion), Parenting video+quiz player (+ pass/fail), all linked into a clickable flow.
+
+## MVP status (as of 2026-11-22)
+
+First MVP is built and pushed to `main`: Landing → Sign Up/Login → Dashboard (streak + next-lesson cards per track) → English drill lesson player (XP, streak) and Parenting video+quiz player (pass/fail), backed by live Supabase schema, RLS, and real seed content. Not yet done: a live end-to-end click-through test — this cloud sandbox's network proxy blocks `*.supabase.co` outright, so verification must happen on a machine with normal network access (`cd app && cp .env.example .env && npx expo start --web`). Known cosmetic gap: fill-in-the-blank renders as a text input rather than tappable word chips (the content shape has no distractor word bank for chips).
 
 ## Repo layout
 
