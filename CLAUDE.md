@@ -12,6 +12,8 @@ Full design rationale: `docs/superpowers/specs/2026-11-22-belajaryuk-mvp-design.
 - **Backend:** Supabase (Postgres, Auth, Storage) — **live**: project `belajaryuk` (ref `tsjycrcanmxjkowyovvm`, `ap-southeast-1`), schema applied, `tracks` seeded. URL/key in `app/.env.example`, client in `app/lib/supabase.ts`. RLS is on for all tables but no policies are defined yet.
 - **Deployment:** a Vercel project named `belajaryuk` exists and is linked to this GitHub repo, for hosting the Expo web export once there's something to deploy.
 - **Design:** Claude's native Design System + Design artifacts (not Figma — dropped after hitting Figma MCP's Starter-plan rate limit mid-build; free and unlimited within this ecosystem). `ui-ux-designer` ("Citra") builds a Design System artifact (tokens/components) and Design artifacts (screens) here; `mobile-web-builder` ("Wira") implements from those.
+  - Design System artifact: "belajaryuk Design System" — slug `6b5c9ba9-3d50-48e2-9bff-176c31ee3c6c` (https://claude.ai/artifact/EFwBjLGUBjwKKtmhV1Y1zj). Colors, type (Plus Jakarta Sans), spacing, radius, Button/Input/Card components.
+  - Design canvas: "belajaryuk — Marketing Site + Auth" — slug `5e6aa96f-f9ac-4794-80f2-52aeafc2e40c` (https://claude.ai/artifact/CfDmzg5ZLKEHP4gjTkiUT5). Artboards: Landing Page, Sign Up, Login (web), linked into a clickable flow.
 
 ## Repo layout
 
