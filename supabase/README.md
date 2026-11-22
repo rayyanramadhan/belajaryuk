@@ -1,11 +1,10 @@
 # belajaryuk — Supabase
 
-**Status: schema-only.** No live Supabase project is wired up yet (project creation was blocked here for billing-safety reasons — see the main README / chat history). Once a project exists:
+**Status: live.** Project `belajaryuk` (ref `tsjycrcanmxjkowyovvm`, region `ap-southeast-1`) is provisioned under the "Business" org, and `0001_init.sql` is applied — all 5 tables exist, `tracks` is seeded with `english` and `parenting`.
 
-1. Install the Supabase CLI locally (`npm install -g supabase`), or use the Supabase MCP tools.
-2. Run `supabase link --project-ref <ref>`.
-3. Run `supabase db push` to apply `migrations/0001_init.sql`.
-4. Copy the project's URL and anon/publishable key into `app/.env` (see `app/.env.example` once `backend-architect` wires up the client).
+- URL + publishable key are in `app/.env.example` — copy to `app/.env` to run the app against this project.
+- Client: `app/lib/supabase.ts`.
+- Future migrations: write a new numbered file in `migrations/` and apply it via the Supabase MCP tools or `supabase db push` after `supabase link --project-ref tsjycrcanmxjkowyovvm`.
 
 ## Schema
 
@@ -15,4 +14,4 @@
 - `lessons` — belongs to a course; `kind` distinguishes `drill` (English, gamified) vs `video_quiz` (Parenting); `content` is a free-form `jsonb` shape, designed in detail by the `content-structurer` subagent.
 - `lesson_progress` — per-user, per-lesson completion state.
 
-RLS policies are not yet defined — that's `backend-architect`'s next task once a live project exists.
+RLS is enabled on all 5 tables (Supabase default), but no policies are defined yet — that's `backend-architect`'s next task.

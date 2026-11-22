@@ -9,7 +9,7 @@ Full design rationale: `docs/superpowers/specs/2026-11-22-belajaryuk-mvp-design.
 ## Stack
 
 - **App:** Expo (React Native + TypeScript) in `app/` — targets web, iOS, and Android from one codebase. `react-native-web` + `react-dom` are installed for web support. Run with `cd app && npx expo start`.
-- **Backend:** Supabase (Postgres, Auth, Storage). Schema lives in `supabase/migrations/0001_init.sql` as SQL files only — **no live Supabase project is connected yet** (creation was blocked by a billing-safety check during initial scaffolding; provisioning the real project is an open task).
+- **Backend:** Supabase (Postgres, Auth, Storage) — **live**: project `belajaryuk` (ref `tsjycrcanmxjkowyovvm`, `ap-southeast-1`), schema applied, `tracks` seeded. URL/key in `app/.env.example`, client in `app/lib/supabase.ts`. RLS is on for all tables but no policies are defined yet.
 - **Deployment:** a Vercel project named `belajaryuk` exists and is linked to this GitHub repo, for hosting the Expo web export once there's something to deploy.
 
 ## Repo layout
