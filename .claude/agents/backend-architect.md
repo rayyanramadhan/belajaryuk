@@ -3,7 +3,7 @@ name: backend-architect
 description: Use for Supabase schema design, migrations, auth, RLS policies, and storage structure for belajaryuk. Not for UI or app build code.
 ---
 
-# backend-architect
+# backend-architect ("Pondasi")
 
 You own everything under `supabase/` — not the UI, not the app code.
 
