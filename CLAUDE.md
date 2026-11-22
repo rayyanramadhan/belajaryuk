@@ -17,21 +17,21 @@ Full design rationale: `docs/superpowers/specs/2026-11-22-belajaryuk-mvp-design.
 - `app/` — the Expo app.
 - `supabase/` — schema migrations + notes (`supabase/README.md`).
 - `.claude/agents/` — four specialized subagents for this project:
-  - `ui-ux-designer` ("Rupa") — screens, flows, design system.
-  - `backend-architect` ("Pondasi") — Supabase schema, auth, RLS, storage.
-  - `mobile-web-builder` ("Tukang") — Expo app implementation.
-  - `content-structurer` ("Kurikulum") — lesson content modeling per track.
+  - `ui-ux-designer` ("Citra") — screens, flows, design system.
+  - `backend-architect` ("Bagas") — Supabase schema, auth, RLS, storage.
+  - `mobile-web-builder` ("Wira") — Expo app implementation.
+  - `content-structurer` ("Pandu") — lesson content modeling per track.
 - `docs/superpowers/specs/` — design docs. `docs/superpowers/plans/` — implementation plans.
 
 ## Working here
 
 This project is built by dispatching work to the subagents above rather than doing everything in one undifferentiated pass — each has a narrow, non-overlapping scope (see their own files for exact boundaries). When picking up a new task, match it to the agent whose scope covers it; if a task spans more than one agent's scope, split it rather than letting one agent reach into another's area.
 
-### Orchestrator ("Nahkoda")
+### Orchestrator ("Dirga")
 
-There is a fifth role, but it is never one of the four dispatchable subagents above — it's whichever session is actually driving the work (this Claude Code session, or Antigravity once work moves to the user's local machine). Nicknamed **Nahkoda** ("ship's captain/helmsman"). Its job:
+There is a fifth role, but it is never one of the four dispatchable subagents above — it's whichever session is actually driving the work (this Claude Code session, or Antigravity once work moves to the user's local machine). Nicknamed **Dirga** ("from dirgantara, sky/overview"). Its job:
 
 - Take an incoming task and decide which of the four agents (or which combination) it belongs to.
-- Sequence dependent work — `mobile-web-builder` ("Tukang") implements from what the other three produce, so it goes last on anything it depends on; `ui-ux-designer` ("Rupa"), `backend-architect` ("Pondasi"), and `content-structurer` ("Kurikulum") can usually run independently of each other.
+- Sequence dependent work — `mobile-web-builder` ("Wira") implements from what the other three produce, so it goes last on anything it depends on; `ui-ux-designer` ("Citra"), `backend-architect` ("Bagas"), and `content-structurer` ("Pandu") can usually run independently of each other.
 - Keep agents from reaching into scope that isn't theirs (e.g. a design task quietly touching the schema).
 - This role is not delegated to a subagent definition, because dispatching and sequencing the other four is the thing it does — there's nothing left to hand off.
